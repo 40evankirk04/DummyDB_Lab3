@@ -4,6 +4,7 @@ namespace DummyDB
 {
     class Program
     {
+        //Инициализация БД
         void Initialize()
         {
             BookData.CheckTheСorrectness();
@@ -102,6 +103,10 @@ namespace DummyDB
 
             };
 
+            //Отрисовка таблицы
+
+            ConsoleTable table = new ConsoleTable("Автор", "Название", "Читает", "Взял");
+
             bool check = false;
 
             foreach (var book in books)
@@ -110,7 +115,7 @@ namespace DummyDB
                 { 
                     if (reader.CaptureDate.ContainsKey(book.Id) && reader.ReturnDate.ContainsKey(book.Id) == false)
                     {
-                        Console.WriteLine($"{book.Title}: {reader.FIO}, {reader.CaptureDate[book.Id].ToString("d")}");
+                        table.AddRow(book.Author, book.Title, reader.FIO, reader.CaptureDate[book.Id].ToString("d"));
 
                         check = true;
                     }
@@ -118,8 +123,10 @@ namespace DummyDB
 
                 if (check == true) check = false;
 
-                else Console.WriteLine(book.Title); 
+                else table.AddRow(book.Author, book.Title, "", "");
             }
+
+            table.Write(Format.Alternative);
         }
 
         public static void Main(string[] args)
