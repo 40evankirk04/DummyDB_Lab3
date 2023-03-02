@@ -1,0 +1,20 @@
+{
+  "name": "Readers",
+  "columns": [
+    {
+      "name": "id",
+      "type": "int",
+      "isPrimary": true
+    },
+    {
+      "name": "FIO",
+      "type": "string",
+      "isPrimary": false
+    },
+    {
+      "name": "ticketNumber",
+      "type": "int",
+      "isPrimary": false
+    }
+  ]
+}
